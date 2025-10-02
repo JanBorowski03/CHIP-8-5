@@ -33,6 +33,6 @@ end
 
 group :production do
   gem 'terser'
-  gem 'pg', '~> 0.2'
+  gem 'pg', '~> 1.1'
   gem 'rails_12factor'
 end
