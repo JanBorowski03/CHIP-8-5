@@ -231,7 +231,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     ostruct (0.6.3)
-    pg (0.21.0)
+    pg (1.6.2)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -394,7 +394,7 @@ DEPENDENCIES
   ffi (= 1.14.2)
   guard-rspec
   jquery-rails
-  pg (~> 0.2)
+  pg (~> 1.1)
   pry
   pry-byebug
   rails (> 5.0.0)
