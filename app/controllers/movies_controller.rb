@@ -45,6 +45,15 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+  def search_tmdb
+    begin
+      @movies = Movie.find_in_tmdb(params[:search_terms])
+    rescue ArgumentError => e
+      @movies = []
+      flash[:error] = e.message
+    end
+  end
+
   private
 
   def force_index_redirect
@@ -65,5 +74,9 @@ class MoviesController < ApplicationController
 
   def sort_by
     params[:sort_by] || session[:sort_by] || 'id'
+  end
+
+  def movie_params
+    params.require(:movie).permit(:title, :release_date, :language, :rating, :description)
   end
 end

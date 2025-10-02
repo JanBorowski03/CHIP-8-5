@@ -6,6 +6,7 @@ gem 'ffi', '1.14.2'
 
 gem 'sass-rails', '~> 5.0.3'
 gem 'uglifier', '>= 2.7.1'
+gem "webmock", '2.3.2'
 
 gem 'jquery-rails'
 gem 'bigdecimal', '1.3.5'
@@ -22,6 +23,12 @@ group :development, :test do
 
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.3.6'
+end
+
+gem 'faraday', '1.8.0'  # in main group; simplifies calling TMDb
+group :test do
+  gem 'rails-controller-testing'
+  gem 'guard-rspec'                 # automates re-running tests
 end
 
 group :production do

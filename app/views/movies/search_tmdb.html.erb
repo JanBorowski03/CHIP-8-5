@@ -5,24 +5,77 @@
 <h2>Search in TMDb</h2>
 <%# Part 5 here %>
 
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %> alert-dismissible fade show" role="alert">
+    <%= value %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
 <div class="search-container">
 <%# Part 1 here %>
-<%= form_tag <%# fill in here #%> do %>
+<%= form_tag search_tmdb_path, method: :get, id: :tmdb_form do %>
     <label for="searchMovieName">Movie Name</label>
-    <%= text_field_tag 'title', nil, class: "form-control", id: "movie_title_field", placeholder: "Manhunter", id: "movie_title_field"%> 
+    <%= text_field_tag 'search_terms[title]', nil, class: "form-control", id: "movie_title_field", placeholder: "Manhunter", id: "movie_title_field"%> 
     <label for="searchReleaseDateField">Release Year</label>
-    <%= text_field_tag 'release_year', nil, class: "form-control", id: "movie_year_field", placeholder: "1986", id: "movie_year_field"%>
+    <%= text_field_tag 'search_terms[release_year]', nil, class: "form-control", id: "movie_year_field", placeholder: "1986", id: "movie_year_field"%>
   
   <div class="form-check">
-    <%= radio_button_tag 'language', 'en', false, class: "form-check-input" %>
+    <%= radio_button_tag 'search_terms[language]', 'en', false, class: "form-check-input" %>
     <label class="form-check-label" for="language_en">English Only</label>
   </div>
 
   <div class="form-check">
-    <%= radio_button_tag 'language', 'all', true, class: "form-check-input" %>
+    <%= radio_button_tag 'search_terms[language]', 'all', true, class: "form-check-input" %>
     <label class="form-check-label" for="language_all">All Languages</label>
   </div>
   <%= submit_tag 'Search', id: 'tmdb_submit', class: 'btn btn-warning col-2' %>
   
 <% end %>
+
+  <%= link_to 'Back to Home', root_path, class: 'btn btn-primary col-2' %>
+
+<% if defined?(@movies) && @movies != nil %>
+<table class="table table-striped col-md-12" id="movies">
+  <thead>
+    <tr>
+      <th>Movie Title</th>
+      <th>Rating</th>
+      <th>Release Date</th>
+      <th>Synopsis</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td>
+          <%= movie['title'] %>
+        </td>
+        <td>
+          R
+        </td>
+        <td>
+          <%= movie['release_date'] %>
+        </td>
+        <td>
+          <%= movie['overview'] %>
+        </td>
+        <td>
+          <%= button_to 'Add',
+          movies_path(movie: {
+            title: movie['title'],
+            release_date: movie['release_date'],
+            rating: 'R'
+          }),
+          method: :post,
+          class: 'btn btn-sm btn-primary' %>
+    </td>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
 </div>
