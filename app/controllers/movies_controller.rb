@@ -8,6 +8,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    Rails.logger.debug "Just called index with params: #{params}"
     @all_ratings = Movie.all_ratings
     @movies = Movie.with_ratings(ratings_list, sort_by)
     @ratings_to_show_hash = ratings_hash
