@@ -12,6 +12,8 @@ class MoviesController < ApplicationController
     Rails.logger.debug "Bouta call Movie.with_ratings() with #{ratings_list}, #{sort_by}"
     Rails.logger.debug "Movie.method(:with_ratings).source_location #{Movie.method(:with_ratings).source_location}"
     Rails.logger.debug "Movie.method(:with_ratings).arity #{Movie.method(:with_ratings).arity}"
+    m = Movie.method(:with_ratings)
+    Rails.logger.debug "with_ratings owner=#{m.owner} source=#{m.source_location.inspect} arity=#{m.arity} params=#{m.parameters.inspect}"
     @movies = Movie.with_ratings(ratings_list, sort_by)
     Rails.logger.debug "Hopefully we returned"
     @ratings_to_show_hash = ratings_hash

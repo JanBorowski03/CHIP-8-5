@@ -4,6 +4,7 @@ class Movie < ApplicationRecord
   end
 
   def self.with_ratings(ratings, sort_by)
+    Rails.logger.debug "good to see you"
     if ratings.nil?
       all.order sort_by
     else
