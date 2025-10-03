@@ -8,10 +8,10 @@ class MoviesController < ApplicationController
   end
 
   def index
-    Rails.logger.debug "Just called index with params: #{params}"
     @all_ratings = Movie.all_ratings()
-    Rails.logger.debug "Bouta call Movie.with_ratings()"
     Rails.logger.debug "Bouta call Movie.with_ratings() with #{ratings_list}, #{sort_by}"
+    Rails.logger.debug "Movie.method(:with_ratings).source_location #{Movie.method(:with_ratings).source_location}"
+    Rails.logger.debug "Movie.method(:with_ratings).arity #{Movie.method(:with_ratings).arity}"
     @movies = Movie.with_ratings(ratings_list, sort_by)
     Rails.logger.debug "Hopefully we returned"
     @ratings_to_show_hash = ratings_hash

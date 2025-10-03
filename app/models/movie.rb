@@ -1,6 +1,5 @@
 class Movie < ApplicationRecord
   def self.all_ratings
-    Rails.logger.debug "I called a movie method"
     %w[G PG PG-13 R]
   end
 
