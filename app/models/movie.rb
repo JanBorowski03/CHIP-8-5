@@ -6,8 +6,10 @@ class Movie < ApplicationRecord
   def self.with_ratings(ratings, sort_by)
     Rails.logger.debug "good to see you"
     if ratings.nil?
+      Rails.logger.debug "Im if"
       all.order sort_by
     else
+      Rails.logger.debug "Im else"
       where(rating: ratings.map(&:upcase)).order sort_by
     end
   end
