@@ -4,14 +4,13 @@ class Movie < ApplicationRecord
   end
 
   def self.with_ratings(ratings, sort_by)
-    Rails.logger.debug "good to see you"
     if ratings.nil?
       Rails.logger.debug "Im if"
       all.order sort_by
     else
       Rails.logger.debug "Im else"
       Rails.logger.debug "ratings.map(&:upcase) #{ratings.map(&:upcase)}"
-      tmp = all.where(rating: "R") # ratings.map(&:upcase)
+      tmp = all.where(arel_table[:rating].eq("R")) # ratings.map(&:upcase)
       Rails.logger.debug "Im else 1.1"
       tmp.order sort_by
     end
