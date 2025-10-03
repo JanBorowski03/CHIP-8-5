@@ -11,7 +11,7 @@ class Movie < ApplicationRecord
     else
       Rails.logger.debug "Im else"
       Rails.logger.debug "ratings.map(&:upcase) #{ratings.map(&:upcase)}"
-      tmp = Movie.where(rating: "R") # ratings.map(&:upcase)
+      tmp = where(rating: "R") # ratings.map(&:upcase)
       Rails.logger.debug "Im else 1.1"
       tmp.order sort_by
     end
