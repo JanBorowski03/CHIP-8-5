@@ -17,6 +17,7 @@ class MoviesController < ApplicationController
     # remember the correct settings for next time
     session['ratings'] = ratings_list
     session['sort_by'] = @sort_by
+    Rails.logger.debug "Hopefully we returned again with movies: #{@movies}"
   end
 
   def new
