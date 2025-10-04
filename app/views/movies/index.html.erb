@@ -24,6 +24,9 @@
 
 </div>
 
+<%= Rails.logger.debug "[INDEX VIEW] entered movies/index.html.erb" %>
+
+
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
@@ -40,6 +43,8 @@
       <th>More Info</th>
     </tr>
   </thead>
+
+  <%= Rails.logger.debug "[INDEX VIEW] entered movies/index.html.erb" %>
   <tbody>
     <% @movies.each do |movie| %>
       <tr>
