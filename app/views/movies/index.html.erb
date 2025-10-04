@@ -63,5 +63,7 @@
       </tr>
     <% end %>
   </tbody>
+  <%= Rails.logger.debug "[INDEX VIEW] entered movies/index.html.erb" %>
 </table>
 <%= link_to 'Add new movie', new_movie_path, class: 'btn btn-primary' %>
+<%= Rails.logger.debug "[INDEX VIEW] entered movies/index.html.erb" %>
